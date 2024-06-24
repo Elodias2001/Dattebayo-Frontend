@@ -16,11 +16,11 @@
               v-model="form.email"
               placeholder="john@example.com"
             />
-            <span v-if="errors.email" class="text-danger">{{ errors.email[0] }}</span>
+            <span v-if="errors.email" style="color: red">{{ errors.email[0] }}</span>
           </div>
           <div>
             <UiVeeInput label="Password" type="password" name="password" v-model="form.password" />
-            <span v-if="errors.password" class="text-danger">{{ errors.password[0] }}</span>
+            <span v-if="errors.password" style="color: red">{{ errors.password[0] }}</span>
           </div>
           <div>
             <UiButton class="w-full" type="submit" text="Log in" />
@@ -57,8 +57,10 @@
   const errors = ref([]);
 
   const form = reactive({
-    email: "olouwagnon@gmail.com",
-    password: "Pa$$w0rd!",
+    email: null,
+    password: null,
+    //  email: "olouwagnon@gmail.com",
+    // password: "Pa$$w0rd!",
   });
 
   useSeoMeta({
@@ -104,9 +106,9 @@
           description:
             "Impossible de se connecter au serveur. Veuillez vérifier votre connexion réseau ou réessayer plus tard.",
         });
-      } else if (error.response) {
+      } else if (error.response.status === 422) {
         // Autres erreurs (par exemple, validation, authentification)
-        errors.value = error.response.data.errors;
+        errors.value = error.response["_data"].errors;
       } else {
         // Autres erreurs générales
         useSonner.error("Connexion", {

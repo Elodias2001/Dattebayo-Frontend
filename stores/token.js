@@ -1,7 +1,7 @@
 export const useTokenStore = defineStore("token", {
   state: () => ({
-    token: null, 
-    loggedIn: false 
+    token: null,
+    loggedIn: false,
   }),
   persist: true,
   getters: {
@@ -11,14 +11,15 @@ export const useTokenStore = defineStore("token", {
   actions: {
     setToken(token) {
       this.token = token;
-      this.loggedIn = true
+      this.loggedIn = true;
     },
 
     removeToken() {
-      const auth = useAuthStore()
+      const localePath = useLocalePath();
+      const auth = useAuthStore();
       auth.$reset(); // Je reset les donnees persister par le useAuthStore notamment a travers la variable user
       this.$reset(); // Je reset les donnees persister par le useTokenStore a travers les variables token et loggedIn
-      return navigateTo("/auth/login"); //Redirection page login
+      return navigateTo(localePath("/auth/login")); //Redirection page login
     },
   },
 });

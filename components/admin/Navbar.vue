@@ -10,7 +10,7 @@
         >
           <Icon name="lucide:sun-medium" class="h-4 w-4" />
         </UiButton>
-        <UiButton variant="outline" size="icon"
+        <UiButton variant="outline" size="icon" @click.prevent="auth.logout"
           ><Icon class="h-4 w-4" name="lucide:log-out"
         /></UiButton>
       </div>
@@ -18,4 +18,8 @@
   </UiNavbar>
 </template>
 
-<script setup></script>
+<script setup>
+  import { useAuthStore } from "~/stores/auth";
+
+  const auth = useAuthStore();
+</script>

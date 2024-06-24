@@ -5,8 +5,8 @@
       <UiScrollArea class="z-10 h-full w-full border-r">
         <div class="flex h-full flex-col pt-7">
           <NuxtLink to="#" class="flex w-full items-center gap-3 px-5">
-            <UiAvatar src="/icon.png" alt="Company Logo" class="size-7 rounded object-contain" />
-            <span class="text-xl font-bold">{{ COMPANY_NAME }}</span>
+            <UiAvatar src="/icon.jpg" alt="Company Logo" class="size-7 rounded object-contain" />
+            <span class="text-xl font-bold">DATTEBAYO</span>
           </NuxtLink>
           <div class="my-6 px-5">
             <UiVeeInput v-model="search" placeholder="Search..." icon="lucide:search" />
