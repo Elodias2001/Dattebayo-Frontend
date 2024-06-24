@@ -87,12 +87,7 @@
   });
 
   const submit = handleSubmit(async (_) => {
-    // useSonner("Connexion établie avec succès !", {
-    //   description: "Connexion établie avec succès !",
-    // });
-
     try {
-      alert("1");
       await auth.login(form);
       await push.success({
         title: "Connexion",
@@ -105,7 +100,7 @@
     } catch (error) {
       if (error.message && error.message.includes("Failed to fetch")) {
         // Erreur de connexion réseau (ex. serveur éteint)
-        useSonner.error("connexion", {
+        useSonner.error("Connexion", {
           description:
             "Impossible de se connecter au serveur. Veuillez vérifier votre connexion réseau ou réessayer plus tard.",
         });
@@ -114,7 +109,7 @@
         errors.value = error.response.data.errors;
       } else {
         // Autres erreurs générales
-        useSonner.error("connexion", {
+        useSonner.error("Connexion", {
           description: "Une erreur est survenue. Veuillez réessayer plus tard.",
         });
       }

@@ -10,9 +10,7 @@ export const useAuthStore = defineStore("auth", {
   },
   actions: {
     async login(formData) {
-      alert("2");
       try {
-        alert("3");
         const { data } = await $fetch("http://127.0.0.1:8000/api/login", {
           method: "POST",
           body: { ...formData },
@@ -52,10 +50,11 @@ export const useAuthStore = defineStore("auth", {
     },
 
     commonSetter(data) {
+      const localePath = useLocalePath();
       const tokenStore = useTokenStore();
       tokenStore.setToken(data.token);
       this.user = data.user;
-      return navigateTo("/admin/dashboard");
+      return navigateTo(localePath("/admin/dashboard"));
     },
   },
 });

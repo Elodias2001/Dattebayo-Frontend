@@ -1,7 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-
   modules: [
     "@nuxtjs/tailwindcss",
     "@nuxtjs/color-mode",
@@ -94,7 +93,7 @@ export default defineNuxtConfig({
     url: "http://localhost:3000",
     name: "DATTEBAYO",
     description: "Let's Go !!!",
-    defaultLocale: "en",
+    defaultLocale: "fr",
     identity: {
       type: "Person",
     },

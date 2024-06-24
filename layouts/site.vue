@@ -12,7 +12,7 @@
             <Icon name="lucide:sun-medium" class="h-4 w-4" />
           </UiButton>
           <UiButton variant="outline" size="sm"
-            ><NuxtLink to="/auth/login">Connexion</NuxtLink></UiButton
+            ><NuxtLink :to="localePath('/auth/login')">Connexion</NuxtLink></UiButton
           >
         </div>
       </UiContainer>
@@ -21,4 +21,6 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+  const localePath = useLocalePath();
+</script>
