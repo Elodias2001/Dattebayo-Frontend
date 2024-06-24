@@ -6,7 +6,7 @@
           <h1 class="text-2xl font-semibold">Posts</h1>
           <p class="mt-1 text-muted-foreground">Consulter les articles</p>
         </div>
-        <UiButton @click="loadData" size="sm">Load Users</UiButton>
+        <UiButton size="sm">Load Posts</UiButton>
       </div>
       <UiDivider class="my-10" />
     </UiContainer>
@@ -14,6 +14,9 @@
 </template>
 
 <script setup>
+  definePageMeta({
+    layout: "site",
+  });
   useHead({
     title: "Articles",
     meta: [

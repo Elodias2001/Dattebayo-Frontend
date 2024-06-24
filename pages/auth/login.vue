@@ -6,13 +6,21 @@
       <h1 class="text-2xl font-bold tracking-tight lg:text-3xl">Se connecter</h1>
       <p class="mt-1 text-muted-foreground">Entrez votre email & votre mot de passe</p>
 
-      <form class="mt-10" @submit="submit">
+      <form class="mt-10" @submit.prevent="submit">
         <fieldset :disabled="isSubmitting" class="grid gap-5">
           <div>
-            <UiVeeInput label="Email" type="email" name="email" placeholder="john@example.com" />
+            <UiVeeInput
+              label="Email"
+              type="email"
+              name="email"
+              v-model="form.email"
+              placeholder="john@example.com"
+            />
+            <span v-if="errors.email" class="text-danger">{{ errors.email[0] }}</span>
           </div>
           <div>
-            <UiVeeInput label="Password" type="password" name="password" />
+            <UiVeeInput label="Password" type="password" name="password" v-model="form.password" />
+            <span v-if="errors.password" class="text-danger">{{ errors.password[0] }}</span>
           </div>
           <div>
             <UiButton class="w-full" type="submit" text="Log in" />
@@ -40,11 +48,27 @@
 </template>
 
 <script setup>
+  import { useAuthStore } from "~/stores/auth";
+  import { useTokenStore } from "~/stores/token";
   import { object, string } from "yup";
+
+  const auth = useAuthStore();
+  const token = useTokenStore();
+  const errors = ref([]);
+
+  const form = reactive({
+    email: "olouwagnon@gmail.com",
+    password: "Pa$$w0rd!",
+  });
 
   useSeoMeta({
     title: "Se Connecter",
     description: "Entrez votre email & votre mot de passe",
+  });
+
+  definePageMeta({
+    middleware: ["guest"],
+    layout: "site",
   });
 
   const LoginSchema = object({
@@ -66,13 +90,34 @@
     // useSonner("Connexion établie avec succès !", {
     //   description: "Connexion établie avec succès !",
     // });
-    push.success({
-      title: "Connexion",
-      message: "Connexion établie avec succès !",
-      props: {
-        name: "Maria",
-        lastName: "Rossi",
-      },
-    });
+
+    try {
+      alert("1");
+      await auth.login(form);
+      await push.success({
+        title: "Connexion",
+        message: "Connexion établie avec succès !",
+        props: {
+          name: auth.getUser.name,
+          email: auth.getUser.email,
+        },
+      });
+    } catch (error) {
+      if (error.message && error.message.includes("Failed to fetch")) {
+        // Erreur de connexion réseau (ex. serveur éteint)
+        useSonner.error("connexion", {
+          description:
+            "Impossible de se connecter au serveur. Veuillez vérifier votre connexion réseau ou réessayer plus tard.",
+        });
+      } else if (error.response) {
+        // Autres erreurs (par exemple, validation, authentification)
+        errors.value = error.response.data.errors;
+      } else {
+        // Autres erreurs générales
+        useSonner.error("connexion", {
+          description: "Une erreur est survenue. Veuillez réessayer plus tard.",
+        });
+      }
+    }
   });
 </script>

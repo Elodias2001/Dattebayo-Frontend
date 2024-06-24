@@ -10,6 +10,10 @@ export default defineNuxtConfig({
     "@vee-validate/nuxt",
     "@morev/vue-transitions/nuxt",
     "notivue/nuxt",
+    "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
+    "@nuxtjs/i18n",
+    "@nuxtjs/seo",
   ],
   css: [
     "notivue/notification.css", // Only needed if using built-in notifications
@@ -71,5 +75,29 @@ export default defineNuxtConfig({
 
   build: {
     transpile: ["vue-sonner"],
+  },
+  i18n: {
+    defaultLocale: "fr",
+    baseUrl: "http://localhost:3000",
+    locales: [
+      { code: "en", name: "English", iso: "en-US" },
+      { code: "fr", name: "Français", iso: "fr-FR" },
+    ],
+    strategy: "prefix",
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: "i18n_redirected",
+      redirectOn: "root", // recommended
+    },
+  },
+  site: {
+    url: "http://localhost:3000",
+    name: "DATTEBAYO",
+    description: "Let's Go !!!",
+    defaultLocale: "en",
+    identity: {
+      type: "Person",
+    },
+    twitter: "https://x.com/Elodias15",
   },
 });
