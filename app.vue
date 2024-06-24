@@ -14,7 +14,7 @@
 
   const title = ref("ADMIN DASHBOARD");
   const description = ref("Consulter le tableau de board de notre application après connexion.");
-  const img = "/cover.png";
+  const img = "/icon.jpg";
 
   useSeoMeta({
     title: title.value,
@@ -33,6 +33,13 @@
     htmlAttrs: {
       lang: "fr",
     },
+    link: [
+      {
+        rel: "icon",
+        type: "image/jpg+xml",
+        href: "/icon.jpg",
+      },
+    ],
   });
 
   // Watch for changes in online status and show notification

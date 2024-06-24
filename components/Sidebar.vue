@@ -2,14 +2,10 @@
   <aside :class="styles({ class: props.class })">
     <UiScrollArea class="h-screen px-5 py-10">
       <div class="flex items-center gap-5">
-        <UiAvatar
-          class="h-10 w-10 shrink-0"
-          src="https://behonbaker.com/icon.png"
-          alt="Behon Baker"
-        />
+        <UiAvatar class="h-10 w-10 shrink-0" src="/icon.jpg" alt="DATTEBAYO" />
         <div class="grow text-sm">
-          <p class="font-bold">Behon Baker</p>
-          <p class="text-sm text-muted-foreground">behonbaker.com</p>
+          <p class="font-bold">DATTEBAYO</p>
+          <p class="text-sm text-muted-foreground">Kwaabo 😁</p>
         </div>
         <div class="ml-auto">
           <UiTooltip disable-closing-trigger>
@@ -43,14 +39,12 @@
   </aside>
 </template>
 
-<script lang="ts" setup>
+<script setup>
   const colorMode = useColorMode();
 
   const isDark = computed(() => colorMode.value === "dark");
 
-  const props = defineProps<{
-    class?: any;
-  }>();
+  const props = defineProps();
 
   const styles = tv({
     base: "sticky top-0 hidden h-screen lg:block",

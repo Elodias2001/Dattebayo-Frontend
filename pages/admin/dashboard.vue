@@ -27,6 +27,16 @@
 <script setup>
   useHead({
     title: "PANEL ADMIN",
+    htmlAttrs: {
+      lang: "fr",
+    },
+    link: [
+      {
+        rel: "icon",
+        type: "image/jpg+xml",
+        href: "/icon.jpg",
+      },
+    ],
   });
 
   definePageMeta({

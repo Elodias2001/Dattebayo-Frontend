@@ -27,7 +27,7 @@
 
   const title = ref("ADMIN DASHBOARD");
   const description = ref("Consulter le tableau de board de notre application après connexion.");
-  const img = "/cover.png";
+  const img = "/icon.jpg";
 
   useSeoMeta({
     title: title.value,
@@ -44,13 +44,13 @@
 
   useHead({
     htmlAttrs: {
-      lang: "en",
+      lang: "fr",
     },
     link: [
       {
         rel: "icon",
-        type: "image/svg+xml",
-        href: "/icon.svg",
+        type: "image/jpg+xml",
+        href: "/icon.jpg",
       },
     ],
   });
