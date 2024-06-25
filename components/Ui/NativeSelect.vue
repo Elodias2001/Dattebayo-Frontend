@@ -25,28 +25,14 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-  const props = defineProps<{
-    class?: any;
-    id?: string;
-    name?: string;
-    placeholder?: string;
-    disabled?: boolean;
-    required?: boolean;
-    modelValue?: any;
-    multiple?: boolean;
-    size?: number;
-    autofocus?: boolean;
-    trailingIcon?: string;
-  }>();
+<script setup>
+  const props = defineProps();
   const styles = tv({
-    base: "h-10 w-full appearance-none rounded-md border border-input bg-background px-3 py-2 pr-10 ring-offset-background focus-visible:outline-none  focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm",
+    base: "h-10 w-full appearance-none rounded-md border border-input bg-background px-3 py-2 pr-10 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm",
   });
 
-  const select = ref<HTMLSelectElement | null>(null);
-  const emits = defineEmits<{
-    "update:modelValue": [value: any];
-  }>();
+  const select = ref(null);
+  const emits = defineEmits();
 
   const localModel = useVModel(props, "modelValue", emits);
 
