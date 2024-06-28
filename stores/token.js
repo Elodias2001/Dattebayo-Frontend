@@ -14,12 +14,12 @@ export const useTokenStore = defineStore("token", {
       this.loggedIn = true;
     },
 
-    removeToken() {
+    async removeToken() {
       const localePath = useLocalePath();
       const auth = useAuthStore();
-      auth.$reset(); // Je reset les donnees persister par le useAuthStore notamment a travers la variable user
-      this.$reset(); // Je reset les donnees persister par le useTokenStore a travers les variables token et loggedIn
-      return navigateTo(localePath("/auth/login")); //Redirection page login
+      await auth.$reset(); // Je reset les donnees persister par le useAuthStore notamment a travers la variable user
+      await this.$reset(); // Je reset les donnees persister par le useTokenStore a travers les variables token et loggedIn
+      // return navigateTo(localePath("/auth/login")); //Redirection page login
     },
   },
 });

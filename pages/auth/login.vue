@@ -89,7 +89,9 @@
   });
 
   const submit = handleSubmit(async (_) => {
+    alert("1");
     try {
+      alert("2");
       await auth.login(form);
       await push.success({
         title: "Connexion",

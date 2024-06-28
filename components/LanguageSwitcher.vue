@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex">
     <UiDropdownMenu>
       <UiDropdownMenuTrigger asChild>
         <UiButton variant="outline" size="icon">
@@ -20,9 +20,18 @@
         </UiDropdownMenuRadioGroup>
       </UiDropdownMenuContent>
     </UiDropdownMenu>
+    <div class="mx-3">
+      <UiButton variant="outline" size="icon" @click.prevent="auth.logout"
+        ><Icon class="h-4 w-4" name="lucide:log-out"
+      /></UiButton>
+    </div>
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
+  import { useAuthStore } from "~/stores/auth";
+
   const { locale, locales, setLocale } = useI18n();
+
+  const auth = useAuthStore();
 </script>
