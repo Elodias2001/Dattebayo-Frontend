@@ -18,16 +18,26 @@
             />
             <span v-if="errors.email" style="color: red">{{ errors.email[0] }}</span>
           </div>
-          <div>
+          <div class="relative">
             <UiVeeInput
               label="Password"
               :type="isPasswordVisible ? 'text' : 'password'"
               name="password"
               v-model="form.password"
-              :icon="isPasswordVisible ? 'lucide:eye' : 'lucide:eye-off'"
-              @click="isPasswordVisible = !isPasswordVisible"
+              placeholder="••••••••"
             />
             <span v-if="errors.password" style="color: red">{{ errors.password[0] }}</span>
+
+            <span
+              class="absolute inset-y-10 right-0 flex cursor-pointer items-center pr-1"
+              @click="isPasswordVisible = !isPasswordVisible"
+            >
+              <UiFancyIcon
+                :icon="isPasswordVisible ? 'lucide:eye' : 'lucide:eye-off'"
+                type="dark"
+                color="dark"
+              />
+            </span>
           </div>
           <div>
             <UiButton class="w-full" type="submit" text="Log in" />
@@ -66,7 +76,7 @@
   const form = reactive({
     email: null,
     password: null,
-    //  email: "olouwagnon@gmail.com",
+    // email: "olouwagnon@gmail.com",
     // password: "Pa$$w0rd!",
   });
 
